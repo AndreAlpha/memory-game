@@ -27,9 +27,9 @@ public class GameFrame extends JFrame {
         this.board = board;
         this.buttons = new ArrayList<>();
 
-        this.setTitle("Memory Game - Unimol");
+        this.setTitle("Memory Game");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(600, 600);
+        this.setSize(800, 800);
         this.setLayout(new BorderLayout());
 
         JPanel gridPanel = new JPanel();
