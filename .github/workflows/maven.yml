@@ -11,23 +11,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     - name: Set up JDK 21
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         java-version: '21'
         distribution: 'temurin'
-        cache: maven # Velocizza le build successive
+        cache: maven
         
     - name: Build with Maven
-      # Esegue tutto: Compilazione, Test Unitari, Checkstyle, SpotBugs
-      # Se uno di questi fallisce, la build diventa ROSSA su GitHub
       run: mvn -B clean verify
       
     - name: Upload Test Report
-      uses: actions/upload-artifact@v3
-      if: always() # Esegue anche se i test falliscono
+      uses: actions/upload-artifact@v4
+      if: always()
       with:
         name: test-results
         path: target/surefire-reports
