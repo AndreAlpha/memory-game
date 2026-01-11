@@ -2,11 +2,29 @@ package it.unimol.memory;
 
 import it.unimol.memory.gui.GameFrame;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 /**
  * Entry point del gioco Memory.
  */
 public class Main {
+
+    /**
+     * Imposta il Look and Feel Nimbus se disponibile.
+     */
+    private static void setNimbusLookAndFeel() {
+        for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                try {
+                    UIManager.setLookAndFeel(info.getClassName());
+                } catch (Exception ignored) {
+                    assert true;
+                }
+                break;
+            }
+        }
+    }
+
     /**
      * Metodo principale.
      * Avvia l'interfaccia grafica.
@@ -14,15 +32,11 @@ public class Main {
      * @param args argomenti da linea di comando
      */
     public static void main(String[] args) {
-        // Avviamo la GUI nel thread corretto di Swing
+        setNimbusLookAndFeel();
+
         SwingUtilities.invokeLater(() -> {
-            // 1. Creiamo il Modello (4x4 = 16 carte)
             Board board = new Board(4, 4);
-            
-            // 2. Creiamo la View (che crea internamente il Controller)
             GameFrame frame = new GameFrame(board);
-            
-            // 3. Mostriamo la finestra
             frame.setVisible(true);
         });
     }

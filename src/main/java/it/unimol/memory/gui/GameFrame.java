@@ -53,16 +53,13 @@ public class GameFrame extends JFrame {
         JPanel gridPanel = new JPanel();
         gridPanel.setBackground(BACKGROUND_COLOR);
         gridPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
-        // Creiamo una griglia 4x4 (assumendo board da 16 carte)
         gridPanel.setLayout(new GridLayout(4, 4, 15, 15)); // 15px di spazio
 
-        // Passaggio critico: Creiamo il controller PRIMA di aggiungere i bottoni
-        // Ma il controller ha bisogno della view... usiamo this.
         GameController controller = new GameController(board, this);
 
         for (int i = 0; i < board.getSize(); i++) {
             MemoryButton button = new MemoryButton(i);
-            button.addActionListener(controller); // Collega il bottone al cervello
+            button.addActionListener(controller);
             buttons.add(button);
             gridPanel.add(button);
         }
