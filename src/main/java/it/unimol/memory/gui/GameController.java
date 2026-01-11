@@ -98,9 +98,24 @@ public class GameController implements ActionListener {
 
     private void checkVictory() {
         if (board.isGameOver()) {
-            JOptionPane.showMessageDialog(view, "Complimenti! Hai vinto!");
-            // Chiudiamo la finestra, che a sua volta terminerà la JVM
-            view.dispose();
+            Object[] options = { "Nuova partita", "Esci" };
+            int choice = JOptionPane.showOptionDialog(
+                    view,
+                    "Complimenti! Hai vinto!",
+                    "Vittoria!",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE,
+                    null,
+                    options,
+                    options[0]);
+
+            if (choice == JOptionPane.YES_OPTION) {
+                // Riavvia il gioco
+                view.restartGame();
+            } else {
+                // Chiudi l'applicazione
+                view.dispose();
+            }
         }
     }
 }
