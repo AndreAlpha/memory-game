@@ -110,4 +110,18 @@ public class GameFrame extends JFrame {
     public void updateMoves(int moves) {
         movesLabel.setText("Mosse: " + moves);
     }
+
+    /**
+     * Riavvia il gioco creando una nuova partita.
+     * Chiude la finestra corrente e ne apre una nuova con una board fresca.
+     */
+    public void restartGame() {
+        // Chiudi la finestra corrente senza terminare la JVM
+        this.dispose();
+
+        // Crea una nuova partita
+        Board newBoard = new Board(4, 4);
+        GameFrame newFrame = new GameFrame(newBoard);
+        newFrame.setVisible(true);
+    }
 }
