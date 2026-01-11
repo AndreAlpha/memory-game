@@ -4,11 +4,14 @@ import it.unimol.memory.Board;
 import it.unimol.memory.Card;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 /**
@@ -18,6 +21,7 @@ import javax.swing.border.EmptyBorder;
 public class GameFrame extends JFrame {
 
     private static final Color BACKGROUND_COLOR = new Color(47, 79, 79); // Dark Slate Gray
+    private static final Color TITLE_COLOR = new Color(255, 255, 240); // Ivory
 
     private final Board board;
     private final List<MemoryButton> buttons;
@@ -36,6 +40,15 @@ public class GameFrame extends JFrame {
         this.setSize(800, 800);
         this.setLayout(new BorderLayout());
         this.getContentPane().setBackground(BACKGROUND_COLOR);
+
+        // Header con titolo
+        JLabel titleLabel = new JLabel("MEMORY GAME", SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 42));
+        titleLabel.setForeground(TITLE_COLOR);
+        titleLabel.setBorder(new EmptyBorder(20, 0, 10, 0));
+        titleLabel.setOpaque(true);
+        titleLabel.setBackground(BACKGROUND_COLOR);
+        this.add(titleLabel, BorderLayout.NORTH);
 
         JPanel gridPanel = new JPanel();
         gridPanel.setBackground(BACKGROUND_COLOR);
