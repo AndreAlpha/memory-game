@@ -61,11 +61,25 @@ public class GameFrame extends JFrame {
 
             if (card.isVisible() || card.isMatched()) {
                 button.setText(card.getId()); // Mostra il simbolo
-                button.setEnabled(false);     // Disabilita il click (opzionale)
+                button.setEnabled(false); // Disabilita il click (opzionale)
             } else {
-                button.setText("");           // Nascondi
+                button.setText(""); // Nascondi
                 button.setEnabled(true);
             }
         }
+    }
+
+    /**
+     * Riavvia il gioco creando una nuova partita.
+     * Chiude la finestra corrente e ne apre una nuova con una board fresca.
+     */
+    public void restartGame() {
+        // Chiudi la finestra corrente senza terminare la JVM
+        this.dispose();
+
+        // Crea una nuova partita
+        Board newBoard = new Board(4, 4);
+        GameFrame newFrame = new GameFrame(newBoard);
+        newFrame.setVisible(true);
     }
 }
