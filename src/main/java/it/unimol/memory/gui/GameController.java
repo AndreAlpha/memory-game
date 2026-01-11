@@ -23,6 +23,7 @@ public class GameController implements ActionListener {
 
     private Integer firstCardIndex = null;
     private boolean inputBlocked = false;
+    private int moves = 0;
 
     /**
      * Costruisce il controller.
@@ -65,6 +66,9 @@ public class GameController implements ActionListener {
     }
 
     private void handleSecondClick(int secondIndex) {
+        moves++; // Incrementa il contatore mosse
+        view.updateMoves(moves);
+
         Card firstCard = board.getCard(firstCardIndex);
         Card secondCard = board.getCard(secondIndex);
 
