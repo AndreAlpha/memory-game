@@ -3,17 +3,21 @@ package it.unimol.memory.gui;
 import it.unimol.memory.Board;
 import it.unimol.memory.Card;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 /**
  * La finestra principale del gioco.
  * Visualizza la griglia delle carte.
  */
 public class GameFrame extends JFrame {
+
+    private static final Color BACKGROUND_COLOR = new Color(47, 79, 79); // Dark Slate Gray
 
     private final Board board;
     private final List<MemoryButton> buttons;
@@ -31,10 +35,13 @@ public class GameFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(800, 800);
         this.setLayout(new BorderLayout());
+        this.getContentPane().setBackground(BACKGROUND_COLOR);
 
         JPanel gridPanel = new JPanel();
+        gridPanel.setBackground(BACKGROUND_COLOR);
+        gridPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
         // Creiamo una griglia 4x4 (assumendo board da 16 carte)
-        gridPanel.setLayout(new GridLayout(4, 4, 10, 10)); // 10px di spazio
+        gridPanel.setLayout(new GridLayout(4, 4, 15, 15)); // 15px di spazio
 
         // Passaggio critico: Creiamo il controller PRIMA di aggiungere i bottoni
         // Ma il controller ha bisogno della view... usiamo this.
