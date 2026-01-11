@@ -20,9 +20,10 @@ public class GameController implements ActionListener {
     // ma in MVC il controller DEVE avere un riferimento alla view.
     @SuppressFBWarnings("EI_EXPOSE_REP2")
     private final GameFrame view;
-    
+
     private Integer firstCardIndex = null;
     private boolean inputBlocked = false;
+    private int moves = 0;
 
     /**
      * Costruisce il controller.
@@ -65,6 +66,9 @@ public class GameController implements ActionListener {
     }
 
     private void handleSecondClick(int secondIndex) {
+        moves++; // Incrementa il contatore mosse
+        view.updateMoves(moves);
+
         Card firstCard = board.getCard(firstCardIndex);
         Card secondCard = board.getCard(secondIndex);
 
@@ -78,7 +82,7 @@ public class GameController implements ActionListener {
         } else {
             // NO MATCH - Errore
             inputBlocked = true; // Blocca i click
-            
+
             // Timer per nascondere le carte dopo 1 secondo
             Timer timer = new Timer(1000, event -> {
                 firstCard.setVisible(false);

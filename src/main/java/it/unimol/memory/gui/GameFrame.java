@@ -25,6 +25,7 @@ public class GameFrame extends JFrame {
 
     private final Board board;
     private final List<MemoryButton> buttons;
+    private JLabel movesLabel;
 
     /**
      * Inizializza la finestra di gioco.
@@ -65,6 +66,15 @@ public class GameFrame extends JFrame {
         }
 
         this.add(gridPanel, BorderLayout.CENTER);
+
+        // Footer con contatore mosse
+        movesLabel = new JLabel("Mosse: 0", SwingConstants.CENTER);
+        movesLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        movesLabel.setForeground(TITLE_COLOR);
+        movesLabel.setBorder(new EmptyBorder(10, 0, 20, 0));
+        movesLabel.setOpaque(true);
+        movesLabel.setBackground(BACKGROUND_COLOR);
+        this.add(movesLabel, BorderLayout.SOUTH);
     }
 
     /**
@@ -90,5 +100,14 @@ public class GameFrame extends JFrame {
                 button.setEnabled(true);
             }
         }
+    }
+
+    /**
+     * Aggiorna il contatore mosse visualizzato.
+     *
+     * @param moves Il numero di mosse corrente.
+     */
+    public void updateMoves(int moves) {
+        movesLabel.setText("Mosse: " + moves);
     }
 }
