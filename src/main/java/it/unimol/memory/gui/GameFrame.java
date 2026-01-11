@@ -59,11 +59,17 @@ public class GameFrame extends JFrame {
             Card card = board.getCard(i);
             MemoryButton button = buttons.get(i);
 
-            if (card.isVisible() || card.isMatched()) {
-                button.setText(card.getId()); // Mostra il simbolo
-                button.setEnabled(false);     // Disabilita il click (opzionale)
+            if (card.isMatched()) {
+                button.setText(card.getId());
+                button.setMatched();
+                button.setEnabled(false);
+            } else if (card.isVisible()) {
+                button.setText(card.getId());
+                button.setRevealed();
+                button.setEnabled(false);
             } else {
-                button.setText("");           // Nascondi
+                button.setText("");
+                button.setCovered();
                 button.setEnabled(true);
             }
         }
